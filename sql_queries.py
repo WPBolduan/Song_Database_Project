@@ -42,7 +42,7 @@ time_table_insert = "INSERT INTO time (start_time, hour, day, week, month, year,
 # FIND SONGS
 # Implement the `song_select` query in `sql_queries.py` to find the song ID and artist ID based on the title, artist name, and duration of a song.
 
-song_select = song_select = ("""SELECT song_id, artists.artist_id FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE songs.title = %s AND artists.name = %s AND songs.duration = %s""")
+song_select = ("""SELECT song_id, artists.artist_id FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE songs.title = %s AND artists.name = %s AND songs.duration = %s""")
 
 # QUERY LISTS
 

@@ -10,24 +10,33 @@ In the next step the file create_tables.py (call python3 create_tables.py) creat
 The process of conversion from JSON file to the Postgresql database is started with:
 python3 etl.py
 
-
 ## Description of the code files
-create_tables.py        
-etl.ipynb           
-
-
+create_tables.py    Creates all the required postgresql tables in the database    
+etl.ipynb           Shows the flow of the ETL Pipeline based on 1 dataset. Can be used for debugging/extension of functions
+etl.py              Automated ETL flow where all functions are included for the whole dataset
+README.md           This file
+sql_queries.py      All required query calls in postgresql (will be imported to the etl files)       
+test.ipynb          Test file to verify the functionality of the pipeline/database
 
 ## DB schema / ETL pipeline
+The DB schema is a "Star schema":
 
-todo: add comment that decided to DOTHINING when the entry is updated on same id
-add the comment to the feedback that it would be better to build song and artist db completely before the last step in etl.ipynb
-the fact that I add the conversion of the timestamp to the dataframe allows to use the same format for the songplay table
-commment giving func in function was new to me. very convenient
+_Fact Table_
+    songplays - records in log data associated with song plays i.e. records with page NextSong
+        songplay_id, start_time, user_id, level, song_id, artist_id, session_id, location, user_agent
 
-cur.execute(song_table_insert, song_data)
-conn.commit()
+_Dimension Tables_
+    users - users in the app
+        user_id, first_name, last_name, gender, level
+    songs - songs in music database
+        song_id, title, artist_id, year, duration
+    artists - artists in music database
+        artist_id, name, location, latitude, longitude
+    time - timestamps of records in songplays broken down into specific units
+        start_time, hour, day, week, month, year, weekday
 
-why is conn.commit() missing in the etl.py file?
+All the items are automatically extracted from the JSON files and added to the database according to above scheme.
+
 
 
 

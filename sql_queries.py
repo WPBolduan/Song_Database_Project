@@ -10,18 +10,18 @@ time_table_drop = "Drop table if exists time"
 
 # here I checked a bit the FAQ and found "SERIAL"for the primary key
 songplay_table_create = "CREATE TABLE IF NOT EXISTS songplays \
-    (songplay_id SERIAL PRIMARY KEY, start_time timestamp, user_id varchar, \
+    (songplay_id SERIAL PRIMARY KEY, start_time timestamp NOT NULL, user_id bigint NOT NULL, \
     level varchar, song_id varchar, artist_id varchar, session_id int, location varchar, user_agent varchar);" 
 
 user_table_create = "CREATE TABLE IF NOT EXISTS users \
-    (user_id varchar PRIMARY KEY, first_name varchar, last_name varchar, \
+    (user_id bigint PRIMARY KEY, first_name varchar, last_name varchar, \
     gender varchar, level varchar);"
 
 song_table_create = "CREATE TABLE IF NOT EXISTS songs \
-    (song_id varchar PRIMARY KEY, title varchar, artist_id varchar, year int, duration float);"
+    (song_id varchar PRIMARY KEY, title varchar NOT NULL, artist_id varchar, year int, duration float NOT NULL);"
 
 artist_table_create = "CREATE TABLE IF NOT EXISTS artists \
-    (artist_id varchar PRIMARY KEY, name varchar, location varchar, \
+    (artist_id varchar PRIMARY KEY, name varchar NOT NULL, location varchar, \
     latitude float, longitude float);"
 
 time_table_create = "CREATE TABLE IF NOT EXISTS time \
